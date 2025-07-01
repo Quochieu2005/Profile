@@ -1,0 +1,20 @@
+/* CSS cho .lanyard-wrapper */
+.lanyard-wrapper {
+  position: fixed;
+  top: -172px;
+  left: 0;
+  width: 160vw;  /* Đảm bảo thẻ chiếm toàn bộ chiều rộng cửa sổ */
+  height: 150vh; /* Đảm bảo thẻ chiếm toàn bộ chiều cao cửa sổ */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2; /* Đặt z-index thấp để phần tử nằm dưới main */
+  transform: scale(1);
+  transform-origin: center;
+}
+/*canvas {
+  image-rendering: crisp-edges; 
+  filter: brightness(1.1) contrast(1.2); 
+  image-rendering: crisp-edges;
+}*/
+
