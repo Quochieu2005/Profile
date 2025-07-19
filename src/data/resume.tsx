@@ -129,7 +129,7 @@ export const DATA = {
       badges: [],
       location: "Remote",
       title: "Sell Source Code",
-      logoUrl: "https://pwsdata.vn/uploads/02-04-2025/8aaf84e7-efd6-4933-829c-2af7ce7d58eb.png",
+      logoUrl: "https://pwscloud.host/storage/logoiconlanxoanen.png",
       start: "May 2025",
       end: undefined,
       description:
@@ -142,7 +142,7 @@ export const DATA = {
       badges: [],
       location: "FPT VPS - Ho Chi Minh City, Vietnam",
       title: "VPS Provider",
-      logoUrl: "https://pwsdata.vn/uploads/02-04-2025/8aaf84e7-efd6-4933-829c-2af7ce7d58eb.png",
+      logoUrl: "https://pwscloud.host/storage/logoiconlanxoanen.png",
       start: "January 2025",
       end: undefined,
       description:
@@ -226,6 +226,35 @@ export const DATA = {
         },
       ],
       image: "./akay.png",
+      video:
+        "",
+    },
+        {
+      title: "Power web services",
+      href: "https://pwsdata.vn/",
+      dates: "Jun 2025 - undefined",
+      active: true,
+      description:
+        "Thư viện chia sẻ và download source code, upload code kiếm tiền, tổng hợp các mã nguồn và đồ án, kiến thức lập trình chuyên nghành công nghệ thông tin.",
+      technologies: [
+        "JavaScript",
+        "PHP",
+        "PostgreSQL",
+        "Laravel",
+        "Shadcn UI",
+        "Magic UI",
+        "Hostinger",
+        "Cloudflare Workers",
+        "VPS",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://pwsdata.vn/",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "./pws.png",
       video:
         "",
     },
