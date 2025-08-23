@@ -206,3 +206,7 @@ code[data-line-numbers-max-digits="3"] > [data-line]::before {
         }
     }
 }
+
+.text-dark {
+  color: #000000 !important; /* Đảm bảo màu đen được ưu tiên */
+}

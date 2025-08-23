@@ -18,6 +18,7 @@ import { ShinyButton } from "@/components/magicui/shiny-button";
 import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import Script from "next/script";
 import Folder from './components/Folder/Folder';
+import CurvedLoop from "@/components/magicui/CurvedLoop";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -31,6 +32,14 @@ export default function Page() {
         
         <div className="fixed inset-0 z-0 hidden lg:block overflow-hidden pointer-events-none">
           <Lanyard />
+          <CurvedLoop 
+            marqueeText="Phan ✦ Duy ✦ Khai ✦ React ✦ DEV ✦"
+            speed={2}
+            curveAmount={500}
+            direction="left"
+            interactive={true}
+            className="custom-text-style text-dark"
+          />
         </div>
         <div id="hero" className="w-full max-w-7xl mx-auto backdrop-blur bg-[rgba(255,255,255,0.04)] rounded-xl p-4 my-1">
           <div className="flex space-x-2 mb-4">

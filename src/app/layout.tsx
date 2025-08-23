@@ -8,12 +8,13 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import Particles from './components/particles/Particles';
 import { Globe } from "@/components/magicui/globe";
+import { Inter } from 'next/font/google';
 
 
 
-const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
+const fontSans = Inter({
+  subsets: ['latin', 'vietnamese'], // Include 'vietnamese' for lang="vi"
+  variable: '--font-sans',
 });
 
 export const metadata: Metadata = {
@@ -81,8 +82,7 @@ export default function RootLayout({
           /> */}
           <Globe className="w-1/2 h-full flex items-center justify-center ml-auto" />
         </div>
-
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <TooltipProvider delayDuration={0}>
             {/* Bọc nội dung vào khối trung tâm */}
             <div className="relative z-10 max-w-2xl mx-auto py-12 sm:py-24 px-6">
