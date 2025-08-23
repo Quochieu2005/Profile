@@ -19,6 +19,7 @@ import { VelocityScroll } from "@/components/magicui/scroll-based-velocity";
 import Script from "next/script";
 import Folder from './components/Folder/Folder';
 import CurvedLoop from "@/components/magicui/CurvedLoop";
+import { Highlighter } from "@/components/magicui/highlighter";
 
 const BLUR_FADE_DELAY = 0.04;
 
@@ -51,12 +52,13 @@ export default function Page() {
             <div className="flex flex-col-reverse sm:flex-row gap-6 sm:gap-2">
               <div className="flex-col flex flex-1 space-y-1">
                 <SparklesText>
+                  <Highlighter action="underline" color="#FF9800">
                   <BlurFadeText
                     delay={BLUR_FADE_DELAY}
                     className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
                     yOffset={8}
                     text={`Hi, I'm ${DATA.name.split(" ")[0]} 👋`}
-                  />
+                  /></Highlighter>
                 </SparklesText>
 
                 <BlurFadeText
