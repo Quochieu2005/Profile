@@ -39,13 +39,12 @@ export const ResumeCard = ({
   };
 
   return (
-    
     <Link
       href={href || "#"}
       className="block cursor-pointer"
       onClick={handleClick}
     >
-      <Card className="flex backdrop-blur bg-[rgba(255,255,255,0.04)] rounded-xl p-4 my-1">
+      <Card className="flex">
         <div className="flex-none">
           <Avatar className="border size-12 m-auto bg-muted-background dark:bg-foreground">
             <AvatarImage

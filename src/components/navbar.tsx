@@ -10,9 +10,6 @@ import {
 import { DATA } from "@/data/resume";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { LanguageToggle } from "@/components/hooks/language-toggle";
-import { useState } from "react";
-
 
 export default function Navbar() {
   return (
@@ -73,18 +70,6 @@ export default function Navbar() {
             </TooltipContent>
           </Tooltip>
         </DockIcon>
-        <div className="gtranslate_wrapper"></div>
-        {/* <DockIcon>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <LanguageToggle />
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Ngôn ngữ</p>
-            </TooltipContent>
-          </Tooltip>
-        </DockIcon> */}
-
       </Dock>
     </div>
   );

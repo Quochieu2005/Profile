@@ -14,7 +14,6 @@ export const Icons = {
       />
     </svg>
   ),
-  
   x: (props: IconProps) => (
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
       <title>X</title>
@@ -48,8 +47,6 @@ export const Icons = {
     />
   </svg>
 ),
-
-
   youtube: (props: IconProps) => (
     <svg
       width="32px"

@@ -6,15 +6,10 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import Particles from './components/particles/Particles';
-import { Globe } from "@/components/magicui/globe";
-import { Inter } from 'next/font/google';
 
-
-
-const fontSans = Inter({
-  subsets: ['latin', 'vietnamese'], // Include 'vietnamese' for lang="vi"
-  variable: '--font-sans',
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
@@ -24,6 +19,23 @@ export const metadata: Metadata = {
     template: `%s | ${DATA.name}`,
   },
   description: DATA.description,
+  keywords: [
+    "Portfolio",
+    "Phan Duy Khai",
+    "phanduykhai05",
+    "phanduykhai",
+    "khaicybers",
+    "Khai Duy",
+    "Software Engineer",
+    "Full-Stack Developer",
+    "Cybersecurity",
+    "DevOps",
+    "React",
+    "Next.js",
+    "Portfolio",
+    "PTIT",
+    "Vietnam",
+  ],
   openGraph: {
     title: `${DATA.name}`,
     description: DATA.description,
@@ -31,6 +43,14 @@ export const metadata: Metadata = {
     siteName: `${DATA.name}`,
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "/phanduykhai.jpg", // Your avatar
+        width: 1200,
+        height: 630,
+        alt: `${DATA.name} - Software Engineer Portfolio`,
+      },
+    ],
   },
   robots: {
     index: true,
@@ -46,10 +66,32 @@ export const metadata: Metadata = {
   twitter: {
     title: `${DATA.name}`,
     card: "summary_large_image",
+    images: ["/phanduykhai.jpg"],
   },
   verification: {
-    google: "",
+    google: "", // Add Google Search Console verification code
     yandex: "",
+  },
+  other: {
+    "application/ld+json": JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: DATA.name,
+      jobTitle: "Software Engineer",
+      description: DATA.description,
+      url: DATA.url,
+      image: `${DATA.url}/phanduykhai.jpg`,
+      sameAs: [
+        DATA.contact.social.GitHub.url,
+        // Add other social links
+      ],
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Ho Chi Minh",
+        addressCountry: "Vietnam",
+      },
+      knowsAbout: DATA.skills,
+    }),
   },
 };
 
@@ -59,40 +101,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="vi" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "relative min-h-screen font-sans antialiased",
+          "min-h-screen bg-background font-sans antialiased max-w-2xl mx-auto py-12 sm:py-24 px-6",
           fontSans.variable
         )}
       >
-      
-
-        {/* Nền Particles phía dưới toàn màn hình */}
-        <div className="fixed inset-0 -z-10">
-          {/* <Particles
-            particleColors={["#ffffff", "#ffffff"]}
-            particleCount={500}
-            particleSpread={10}
-            speed={0.2}
-            particleBaseSize={100}
-            moveParticlesOnHover={true}
-            alphaParticles={false}
-            disableRotation={false}
-          /> */}
-          <Globe className="w-1/2 h-full flex items-center justify-center ml-auto" />
-        </div>
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        
+        <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
-            {/* Bọc nội dung vào khối trung tâm */}
-            <div className="relative z-10 max-w-2xl mx-auto py-12 sm:py-24 px-6">
-              {children}
-              <Navbar />
-            </div>
+            {children}
+            <Navbar />
           </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
   );
 }
-

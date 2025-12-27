@@ -63,18 +63,6 @@ const config = {
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {
-        fuzzy: {
-          '0%, 100%': { transform: 'translate(0, 0)', opacity: '1' },
-          '10%': { transform: 'translate(-1px, 1px)', opacity: '0.9' },
-          '20%': { transform: 'translate(-2px, -1px)', opacity: '0.8' },
-          '30%': { transform: 'translate(1px, 2px)', opacity: '0.7' },
-          '40%': { transform: 'translate(2px, -2px)', opacity: '0.6' },
-          '50%': { transform: 'translate(-1px, -1px)', opacity: '0.7' },
-          '60%': { transform: 'translate(1px, 1px)', opacity: '0.8' },
-          '70%': { transform: 'translate(-2px, 2px)', opacity: '0.9' },
-          '80%': { transform: 'translate(2px, 1px)', opacity: '1' },
-          '90%': { transform: 'translate(-1px, -2px)', opacity: '0.9' },
-        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -85,7 +73,6 @@ const config = {
         },
       },
       animation: {
-        fuzzy: 'fuzzy 2s infinite ease-in-out',
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
