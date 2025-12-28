@@ -5,11 +5,11 @@ import { title } from "process";
 export const DATA = {
   name: "Khai Duy",
   initials: "DV",
-  url: "https://dkhaidev.vercel.app/", // Replace with your actual domain
-  location: "Ho Chi Minh, Vietnam", // Update location
+  url: "https://dkhaidev.vercel.app/",
+  location: "Ho Chi Minh, Vietnam",
   locationLink: "https://www.google.com/maps/place/hochiminh",
   description:
-    "Portfolio of Khai Duy, a 3rd-year Software Engineering student at PTIT. Passionate about Full-Stack Development, Cybersecurity, and DevOps. Explore my projects, skills, and experience.",
+    "Phan Duy Khai, sinh viên năm 3 ngành Kỹ thuật Phần mềm tại PTIT. Đam mê Phát triển Full-Stack, An ninh mạng và DevOps. Khám phá các dự án, kỹ năng và kinh nghiệm của tôi.",
   summary:
     "I started with Telegram Bots and Backend Development and now specialize in Full-Stack Development and DevOps. Outside of coding, I sharpen my Cybersecurity skills through TryHackMe CTFs and share knowledge via YouTube tutorials. I reinforce these skills by operating a homelab with 2+ enterprise servers.",
   avatarUrl: "/phanduykhai.jpg",
