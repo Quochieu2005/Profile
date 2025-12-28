@@ -229,6 +229,32 @@ export const DATA = {
       ],
       image: "../LBHN.png",
     },
+    {
+      title: "Json Tree",
+      href: "#",
+      dates: "Dec 2025 - Jan 2026",
+      active: true,
+      description:
+        "Visualisation tool to help visualise json format in Graph and Tree form.",
+      technologies: [
+        "Next.js",
+        "Tailwind",
+        "Typescript",
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://json-tree-rouge.vercel.app/",
+          icon: <Icons.globe className="size-3" />,
+        },
+        {
+          type: "Github",
+          href: "https://github.com/phanduykhai05/Json-Tree",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "../image.png",
+    },
   ],
   hackathons: [
     {

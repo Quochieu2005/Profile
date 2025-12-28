@@ -196,7 +196,7 @@ export default function Page() {
             <h3 className="text-lg font-bold mt-4 mb-2">
               Programming Languages
             </h3>
-            <div className="flex flex-row flex-wrap gap-4 max-w-[800px]">
+            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "JavaScript", icon: "js" },
                 { name: "TypeScript", icon: "ts" },
@@ -239,7 +239,7 @@ export default function Page() {
             <h3 className="text-lg font-bold mt-4 mb-2">
               Frontend
             </h3>
-            <div className="flex flex-row flex-wrap gap-4 max-w-[800px]">
+            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "HTML", icon: "html" },
                 { name: "CSS", icon: "css" },
@@ -283,7 +283,7 @@ export default function Page() {
             <h3 className="text-lg font-bold mt-4 mb-2">
               {" "}<Highlighter action="circle" color="#ff0000ff" iterations={2}>Backend</Highlighter>
             </h3>
-            <div className="flex flex-row flex-wrap gap-4 max-w-[800px]">
+            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "Laravel", icon: "laravel" },
                 { name: "FastAPI", icon: "fastapi" },
@@ -326,7 +326,7 @@ export default function Page() {
             <h3 className="text-lg font-bold mt-4 mb-2">
               DevOps
             </h3>
-            <div className="flex flex-row flex-wrap gap-4 max-w-[800px]">
+            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "Docker", icon: "docker" },
                 { name: "Postman", icon: "postman" },
@@ -368,7 +368,7 @@ export default function Page() {
             <h3 className="text-lg font-bold mt-4 mb-2">
               Other
             </h3>
-            <div className="flex flex-row flex-wrap gap-4 max-w-[800px]">
+            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "VS Code", icon: "vscode" },
                 { name: "Wordpress", icon: "wordpress" },
