@@ -30,7 +30,7 @@ export default function Page() {
                 pauseDuration={20000}
                 />
               <p
-                className="max-w-[600px] md:text-xl"
+                className="max-w-[600px] md:text-xl select-none"
               >3rd year majoring in Software Engineering at PTIT. I love building things and helping people. I like Cybersecurity and DevOps.
               </p>
             </div>
@@ -48,7 +48,7 @@ export default function Page() {
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade>
-          <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert leading-relaxed">
+          <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert leading-relaxed select-none">
             I started with Telegram Bots and {" "}<Highlighter action="circle" color="#ff0000ff" iterations={1}> Backend Development</Highlighter>{" "} and now specialize in <Highlighter action="underline" color="#FF9800">Full-Stack Development</Highlighter> and <Highlighter action="underline" color="#FF9800">DevOps</Highlighter>. Outside of coding, I sharpen my <Highlighter action="underline" color="#00eeffff">Cybersecurity</Highlighter> skills through <Highlighter action="underline" color="#f85ae3ff">TryHackMe CTFs</Highlighter> and share knowledge via YouTube tutorials. I reinforce these skills by operating a homelab with  <Highlighter action="box" color="#029effff">2+ enterprise servers</Highlighter>.
           </p>
         </BlurFade>
@@ -56,10 +56,10 @@ export default function Page() {
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
-            <h2 className="text-xl font-bold">Work Experience</h2>
+            <h2 className="text-xl font-bold select-none">Work Experience</h2>
           </BlurFade>
 
-          <BlurFade delay={BLUR_FADE_DELAY * 6}>
+          <BlurFade delay={BLUR_FADE_DELAY * 6} className="select-none">
             {/* PWSDATA */}
             <WorkExperienceCard
               company="Power Web Services"
