@@ -132,7 +132,7 @@ export default function Page() {
               companyLogo="../logoiconlan.png"
               status="Current"
               statusColor="bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20"
-              dateRange="Jan 2024 - Aug 2025"
+              dateRange="Dec 2019 - Present"
               positions={[
                 {
                   title: "Developer Freelance",
