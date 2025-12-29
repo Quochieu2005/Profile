@@ -40,7 +40,7 @@ export function WorkExperienceCard({
 
   return (
     <div
-      className="block cursor-pointer group/card rounded-lg bg-card text-card-foreground transition-colors duration-300"
+      className="block cursor-pointer group/card rounded-lg text-card-foreground transition-colors duration-300"
       onClick={() => setIsExpanded(!isExpanded)}
     >
       <div className="flex gap-4 p-1">
