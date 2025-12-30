@@ -255,6 +255,29 @@ export const DATA = {
       ],
       image: "../image.png",
     },
+    {
+      title: "POWES - Next.js",
+      href: "#",
+      dates: "May 2025 - Present",
+      active: true,
+      description:
+        "ADS, Management tool, Marketing tool, VPS Service, Hosting Service.",
+      technologies: [
+        "Next.js",
+        "Tailwind",
+        "Typescript",
+        "API Laravel",
+        "MySQL"
+      ],
+      links: [
+        {
+          type: "Website",
+          href: "https://pwsdata.vn/",
+          icon: <Icons.globe className="size-3" />,
+        }
+      ],
+      image: "../powes.png",
+    },
   ],
   hackathons: [
     {
