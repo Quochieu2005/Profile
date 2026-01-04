@@ -165,6 +165,25 @@ export default function Page() {
 
         </div>
       </section>
+      <section id="certificates">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 7}>
+            <h2 className="text-xl font-bold">certificates</h2>
+          </BlurFade>
+            <BlurFade
+              delay={BLUR_FADE_DELAY * 8 * 0.05}
+            >
+              <ResumeCard
+                href="/assets/certificates/microsoft-office-specialist-2016-master.pdf"
+                logoUrl="https://cdn.lduy.dev/certificates/logo/microsoft-logo.png"
+                altText="Microsoft Office Specialist 2016 Master"
+                title="Microsoft Office Specialist 2016 Master"
+                subtitle="Microsoft"
+                period="2020"
+              />
+            </BlurFade>
+        </div>
+      </section>
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
