@@ -281,6 +281,41 @@ export const DATA = {
   ],
   hackathons: [
     {
+      title: "Vietnam Cyber Defense Hackathon 2025",
+      dates: "March 15th - 16th, 2025",
+      location: "Ho Chi Minh City University of Technology (HCMUT)",
+      description:
+        "Built a web security monitoring platform to detect common web vulnerabilities such as SQL Injection, XSS, and IDOR, with automated reporting and risk classification.",
+      image:
+        "https://vnptai.io/favicon.ico",
+      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2019/mlh-trust-badge-2019-white.svg",
+      links: [
+        {
+          title: "Github",
+          href: "https://github.com/phanduykhai05/vietnam-cyber-defense-2025",
+          icon: <Icons.github className="h-4 w-4" />,
+        },
+      ],
+    },
+    {
+      title: "AI & Security Hackathon 2025",
+      dates: "June 7th - 8th, 2025",
+      location: "Online Hackathon",
+      description:
+        "Developed an AI-assisted phishing detection system that analyzes URLs, page behavior, and user reports to improve web security awareness and threat prevention.",
+      image:
+        "../aisechack2025.jpg",
+      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2019/mlh-trust-badge-2019-white.svg",
+      links: [
+        {
+          title: "Project Repo",
+          href: "https://github.com/phanduykhai05/ai-security-hackathon-2025",
+          icon: <Icons.github className="h-4 w-4" />,
+        },
+      ],
+    },
+
+    {
       title: "Cyber Apocalypse CTF",
       dates: "March 18th - 22nd, 2024",
       location: "Online (Hack The Box)",
