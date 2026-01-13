@@ -13,12 +13,14 @@ import { Highlighter } from "@/components/magicui/highlighter"
 import { WorkExperienceCard } from "@/components/Work";
 import Lanyard from '@/components/ui/Lanyard';
 import { SparklesText } from "@/components/magicui/sparkles-text";
+import TextAttackFlow  from "@/components/TextAttackFlow";
+import { AuroraText } from "@/components/magicui/aurora-text";
 const BLUR_FADE_DELAY = 0.04;
 
 export default function Page() {
   return (
     
-    <main className="flex flex-col min-h-[100dvh] space-y-10 z-0 -mt-20 -px-8">
+    <main className="flex flex-col min-h-[100dvh] space-y-10 z-0 -mt-20 -px-8 select-none">
       <Lanyard />
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
@@ -94,37 +96,6 @@ export default function Page() {
               skills={["Next.js", "React", "API", "Postman", "TailwindCSS", "Git", "Docker", "SQL"]}
               link="https://pwsdata.vn/"
             />
-            {/* VPS/hosting */}
-            <WorkExperienceCard
-              company="Vps Hosting CloudZone"
-              title="[Agent] Sell ​​VPS/Hosting Services"
-              companyLogo="../logo-cloudzone-white.webp"
-              status="Previous"
-              statusColor="bg-blue-500/10 text-blue-700 dark:text-blue-400 hover:bg-blue-500/20"
-              dateRange="Jan 2024 - Aug 2025"
-              positions={[
-                {
-                  title: "Selling Agent",
-                  dateRange: "Jan 2024 - May 2025",
-                  description: ["Customer Support and Consultation",
-                    "Sales and Marketing",
-                    "Account Management",
-                    "Technical Assistance",
-                    "Feedback Collection",
-                    "Collaboration and Communication",],
-                },
-                {
-                  title: "Automation Developer",
-                  dateRange: "June 2025 - Aug 2025",
-                  highlights: [
-                    "Developed an automated system using Python to streamline customer data management, order processing, and support ticket handling, significantly reducing manual workload.",
-                    "Implemented automation scripts that improved response times to customer inquiries by 50%, enhancing overall customer satisfaction.",
-                  ],
-                },
-              ]}
-              skills={["Sales", "Marketing", "Automation", "Support", "Linux", "Setup Server"]}
-              link="https://cloudzone.vn/"
-            />
             {/* Freelance */}
               <WorkExperienceCard
               company="Freelance Projects"
@@ -161,6 +132,37 @@ export default function Page() {
               skills={["Sales", "Marketing", "Tools", "Support", "Linux", "Setup Server", "PHP", "JavaScript", "Nextjs", "React"]}
               link="zalo://conversation?phone=0347959824"
             />
+            {/* VPS/hosting */}
+            <WorkExperienceCard
+              company="Vps Hosting CloudZone"
+              title="[Agent] Sell ​​VPS/Hosting Services"
+              companyLogo="../logo-cloudzone-white.webp"
+              status="Previous"
+              statusColor="bg-blue-500/10 text-blue-700 dark:text-blue-400 hover:bg-blue-500/20"
+              dateRange="Jan 2024 - Aug 2025"
+              positions={[
+                {
+                  title: "Selling Agent",
+                  dateRange: "Jan 2024 - May 2025",
+                  description: ["Customer Support and Consultation",
+                    "Sales and Marketing",
+                    "Account Management",
+                    "Technical Assistance",
+                    "Feedback Collection",
+                    "Collaboration and Communication",],
+                },
+                {
+                  title: "Automation Developer",
+                  dateRange: "June 2025 - Aug 2025",
+                  highlights: [
+                    "Developed an automated system using Python to streamline customer data management, order processing, and support ticket handling, significantly reducing manual workload.",
+                    "Implemented automation scripts that improved response times to customer inquiries by 50%, enhancing overall customer satisfaction.",
+                  ],
+                },
+              ]}
+              skills={["Sales", "Marketing", "Automation", "Support", "Linux", "Setup Server"]}
+              link="https://cloudzone.vn/"
+            />
           </BlurFade>
 
         </div>
@@ -168,7 +170,7 @@ export default function Page() {
       <section id="certificates">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">certificates</h2>
+            <h2 className="text-xl font-bold">Certificates</h2>
           </BlurFade>
             <BlurFade
               delay={BLUR_FADE_DELAY * 8 * 0.05}
@@ -437,6 +439,64 @@ export default function Page() {
           </div>
         </div>
       </section>
+      <section id="hacking-skills">
+        <div className="flex min-h-0 flex-col gap-y-3">
+          <BlurFade delay={BLUR_FADE_DELAY * 9}>
+            <h2 className="text-xl font-bold">
+              Skills Hacking / Penetration Testing
+            </h2>
+
+            {/* SQL INJECTION */}
+            <TextAttackFlow
+              title="SQL Injection – Technical Workflow"
+              steps={[
+                "Input Analysis",
+                "SQL Injection Detection",
+                "Database Enumeration",
+                "Automated Testing (sqlmap)",
+                "Risk Assessment & Reporting",
+              ]}
+            />
+
+            {/* XSS */}
+            <TextAttackFlow
+              title="Cross-Site Scripting (XSS) – Technical Workflow"
+              steps={[
+                "Input Reflection",
+                "Context Analysis",
+                "Payload Injection",
+                "Script Execution",
+                "Impact Evaluation",
+                "Output Encoding Review",
+              ]}
+            />
+
+            {/* CSRF */}
+            <TextAttackFlow
+              title="CSRF – Technical Workflow"
+              steps={[
+                "State-Changing Request Analysis",
+                "CSRF Token Validation",
+                "Request Forgery Simulation",
+                "Privilege Abuse Testing",
+                "Mitigation Review",
+              ]}
+            />
+
+            {/* IDOR */}
+            <TextAttackFlow
+              title="IDOR / Broken Access Control – Technical Workflow"
+              steps={[
+                "Endpoint Discovery",
+                "Parameter Manipulation",
+                "Unauthorized Access Attempt",
+                "Privilege Escalation Testing",
+                "Access Control Review",
+              ]}
+            />
+          </BlurFade>
+        </div>
+      </section>
       <section id="projects">
         <div className="space-y-12 w-full py-12">
           <BlurFade delay={BLUR_FADE_DELAY * 11}>
@@ -486,7 +546,7 @@ export default function Page() {
                   Hackathons
                 </div>
                 <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  I like building things
+                  I like <AuroraText>building things</AuroraText>
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
                   During my time in university, I attended{" "}<Highlighter action="box" color="#029effff">

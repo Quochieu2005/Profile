@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -109,7 +110,7 @@ export default function RootLayout({
         )}
         suppressHydrationWarning={true}
       >
-        
+        <ScrollToTop />
         <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
             {children}

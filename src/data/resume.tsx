@@ -281,6 +281,23 @@ export const DATA = {
   ],
   hackathons: [
     {
+      title: "Cyber Apocalypse CTF",
+      dates: "March 18th - 22nd, 2024",
+      location: "Online (Hack The Box)",
+      description:
+        "Team-based CTF competition focusing on web exploitation, forensics, and cloud security scenarios in a simulated environment.",
+      image:
+        "../cyberapocalypse.png",
+      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2019/mlh-trust-badge-2019-white.svg",
+      links: [
+        {
+          title: "Team Writeups",
+          href: "https://github.com/phanduykhai05/cyber-apocalypse",
+          icon: <Icons.github className="h-4 w-4" />,
+        },
+      ],
+    },
+    {
       title: "Hackathon Security",
       dates: "April 3rd - 4th, 2024",
       location: "Ho Chi Minh City University of Economics (UEH) Nguyen Van Linh Campus, Binh Chanh, Ho Chi Minh City",
@@ -316,6 +333,40 @@ export const DATA = {
           title: "Backend",
           href: "https://github.com/phanduykhai05/hackathon-backend",
           icon: <Icons.github className="size-3" />,
+        },
+      ],
+    },
+    {
+      title: "Vietnam Cyber Security Challenge (VCSC)",
+      dates: "August 12th - 13th, 2023",
+      location: "University of Information Technology (UIT), Ho Chi Minh City",
+      description:
+        "Participated in a capture-the-flag (CTF) competition focusing on web security, reverse engineering, and basic cryptography challenges.",
+      image:
+        "../vcsc.png",
+      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2019/mlh-trust-badge-2019-white.svg",
+      links: [
+        {
+          title: "Writeups",
+          href: "https://github.com/phanduykhai05/vcsc-writeups",
+          icon: <Icons.github className="h-4 w-4" />,
+        },
+      ],
+    },
+    {
+      title: "WhiteHat Contest Vietnam",
+      dates: "November 5th - 6th, 2023",
+      location: "Online Competition",
+      description:
+        "Solved real-world inspired security challenges including SQL Injection, XSS, authentication bypass, and secure coding practices.",
+      image:
+        "../whitehat.png",
+      mlh: "https://s3.amazonaws.com/logged-assets/trust-badge/2019/mlh-trust-badge-2019-white.svg",
+      links: [
+        {
+          title: "Challenge Solutions",
+          href: "https://github.com/phanduykhai05/whitehat-ctf",
+          icon: <Icons.github className="h-4 w-4" />,
         },
       ],
     },
