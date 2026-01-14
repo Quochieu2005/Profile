@@ -601,6 +601,12 @@ export default function Page() {
                 and I&apos;ll respond whenever I can. I will ignore all
                 soliciting.
               </p>
+
+              <div className="mt-6 flex justify-center">
+                <a href="/assets/certificates/Phan-Duy-Khai-CV.pdf">
+                  <button className="rounded-md border px-3 py-1">View Resume</button>
+                </a>
+              </div>
             </div>
           </BlurFade>
         </div>
