@@ -3,6 +3,7 @@
 import { ChevronRight, ExternalLink } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import BriefcaseIcon from "@/components/icon/briefcase-icon"
 import Check from "@/components/icon/check"
 
@@ -22,7 +23,7 @@ interface WorkExperienceCardProps {
   dateRange: string
   positions: Position[]
   skills: string[]
-  link: string
+  link?: string
 }
 
 export function WorkExperienceCard({
@@ -77,32 +78,34 @@ export function WorkExperienceCard({
           {!isExpanded && <div className="text-xs text-muted-foreground mt-1 italic">Click to see details</div>}
 
           {/* Positions */}
-            <div
-                className={`
-                overflow-hidden transition-all duration-500 ease-in-out
-                ${isExpanded
-                ? "opacity-100 max-h-[1000px] translate-y-0"
-                : "opacity-0 max-h-0 -translate-y-2"}
-            `}
-            >
-                <div className="space-y-4 mb-4 pt-3">
+            <AnimatePresence initial={false}>
+              {isExpanded && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  style={{ overflow: "hidden" }}
+                >
+                  <div className="space-y-4 mb-4 pt-3">
                     {positions.map((position, idx) => (
-                    <div key={idx} className="border-l-2 border-muted pl-4">
+                      <div key={idx} className="border-l-2 border-muted pl-4">
                         <h4 className="font-semibold text-sm mb-1">{position.title}</h4>
                         <p className="text-xs text-muted-foreground mb-2">{position.dateRange}</p>
-
                         <ul className="space-y-1 text-xs sm:text-sm text-foreground">
-                        {(position.highlights ?? position.description)?.map((item, i) => (
+                          {(position.highlights ?? position.description)?.map((item, i) => (
                             <li key={i} className="flex gap-2">
-                            <span className="text-primary flex-shrink-0"><Check /></span>
-                            <span>{item}</span>
+                              <span className="text-primary flex-shrink-0"><Check /></span>
+                              <span>{item}</span>
                             </li>
-                        ))}
+                          ))}
                         </ul>
-                    </div>
+                      </div>
                     ))}
-                </div>
-            </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
 
           {/* Skills */}
@@ -117,13 +120,12 @@ export function WorkExperienceCard({
           )}
 
           {/* Visit Link */}
-          {isExpanded && (
-            
+          {isExpanded && link && (
             <a
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs inline-flex items-center"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs"
               onClick={(e) => e.stopPropagation()}
             >
               <ExternalLink className="size-3" />

@@ -49,6 +49,7 @@ const BlurFade = ({
           duration,
           ease: "easeOut",
         }}
+        style={{ willChange: "opacity, transform" }}
         className={className}
       >
         {children}

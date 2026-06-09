@@ -42,10 +42,9 @@ export const DATA = {
       },
       LinkedIn: {
         name: "LinkedIn",
-        url: "https://dub.sh/dillion-linkedin",
+        url: "https://www.linkedin.com/in/phan-duy-khai-ws/",
         icon: Icons.linkedin,
-
-        navbar: false,
+        navbar: true,
       },
       X: {
         name: "X",

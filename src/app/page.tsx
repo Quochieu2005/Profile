@@ -1,6 +1,5 @@
 import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
-import BlurFadeText from "@/components/magicui/blur-fade-text";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -13,9 +12,26 @@ import { Highlighter } from "@/components/magicui/highlighter"
 import { WorkExperienceCard } from "@/components/Work";
 import Lanyard from '@/components/ui/Lanyard';
 import { SparklesText } from "@/components/magicui/sparkles-text";
-import TextAttackFlow  from "@/components/TextAttackFlow";
 import { AuroraText } from "@/components/magicui/aurora-text";
 const BLUR_FADE_DELAY = 0.04;
+
+function SkillIcon({ name, icon }: { name: string; icon: string }) {
+  return (
+    <div className="relative group">
+      <img
+        alt={name}
+        width={48}
+        height={48}
+        loading="lazy"
+        src={`https://skillicons.dev/icons?i=${icon}&theme=dark`}
+        className="object-contain cursor-pointer transition-transform duration-300"
+      />
+      <div className="pointer-events-none absolute bottom-full left-1/2 z-10 mb-2 -translate-x-1/2 rounded-md bg-white/90 backdrop-blur px-3 py-1.5 text-xs font-medium text-black whitespace-nowrap opacity-0 translate-y-1 scale-95 transition-all duration-200 group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100">
+        {name}
+      </div>
+    </div>
+  )
+}
 
 export default function Page() {
   return (
@@ -33,7 +49,7 @@ export default function Page() {
                 />
               <p
                 className="max-w-[600px] md:text-xl select-none"
-              >3rd year majoring in Software Engineering at PTIT. I love building things and helping people. I like Cybersecurity and DevOps.
+              >4th year majoring in Software Engineering at PTIT. I love building things and helping people. I like Cybersecurity and DevOps.
               </p>
             </div>
             <BlurFade delay={BLUR_FADE_DELAY}>
@@ -62,6 +78,29 @@ export default function Page() {
           </BlurFade>
 
           <BlurFade delay={BLUR_FADE_DELAY * 6} className="select-none">
+            {/* AI POWER */}
+            <WorkExperienceCard
+              company="AI Power Co., Ltd."
+              title="Software Developer"
+              companyLogo="https://aipower.vn/apple-touch-icon.png"
+              status="Current"
+              statusColor="bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20"
+              dateRange="Apr 2026 - Present"
+              positions={[
+                {
+                  title: "Software Developer",
+                  dateRange: "Apr 2026 - Present",
+                  highlights: [
+                    "Build and maintain cross-platform mobile applications using Flutter, delivering consistent UX across iOS and Android.",
+                    "Develop high-performance backend services and REST/gRPC APIs with Golang, handling concurrent workloads at scale.",
+                    "Implement AI-powered features and automation pipelines using Python (FastAPI, LangChain).",
+                    "Build interactive web applications with Next.js, React, and TypeScript, following modern component architecture and SSR patterns.",
+                    "Collaborate across the full stack — from database schema design (PostgreSQL, Redis) to CI/CD pipeline configuration.",
+                  ],
+                },
+              ]}
+              skills={["Flutter", "Golang", "Python", "React", "TypeScript", "Next.js", "FastAPI", "PostgreSQL", "Redis", "Docker", "gRPC"]}
+            />
             {/* PWSDATA */}
             <WorkExperienceCard
               company="Power Web Services"
@@ -135,32 +174,34 @@ export default function Page() {
             {/* VPS/hosting */}
             <WorkExperienceCard
               company="Vps Hosting CloudZone"
-              title="[Agent] Sell ​​VPS/Hosting Services"
+              title="Cloud Infrastructure Engineer"
               companyLogo="../logo-cloudzone-white.webp"
               status="Previous"
               statusColor="bg-blue-500/10 text-blue-700 dark:text-blue-400 hover:bg-blue-500/20"
               dateRange="Jan 2024 - Aug 2025"
               positions={[
                 {
-                  title: "Selling Agent",
+                  title: "Cloud Setup & Support Engineer",
                   dateRange: "Jan 2024 - May 2025",
-                  description: ["Customer Support and Consultation",
-                    "Sales and Marketing",
-                    "Account Management",
-                    "Technical Assistance",
-                    "Feedback Collection",
-                    "Collaboration and Communication",],
+                  description: [
+                    "Provisioned and configured Linux VPS instances (Ubuntu/CentOS) for clients across various use cases",
+                    "Set up and managed web hosting environments including Apache, Nginx, and control panels (cPanel, DirectAdmin)",
+                    "Configured DNS records, SSL/TLS certificates, and domain routing for hosted services",
+                    "Diagnosed and resolved server-side issues including performance bottlenecks, network timeouts, and service failures",
+                    "Assisted clients with server hardening and basic firewall (UFW/iptables) configuration",
+                  ],
                 },
                 {
                   title: "Automation Developer",
                   dateRange: "June 2025 - Aug 2025",
                   highlights: [
-                    "Developed an automated system using Python to streamline customer data management, order processing, and support ticket handling, significantly reducing manual workload.",
-                    "Implemented automation scripts that improved response times to customer inquiries by 50%, enhancing overall customer satisfaction.",
+                    "Built Python automation pipelines to handle provisioning workflows, reducing manual setup time by over 60%.",
+                    "Developed scripts for automated monitoring, alerting, and routine maintenance tasks across the server fleet.",
+                    "Integrated internal tooling with the hosting platform API to streamline order fulfillment and resource allocation.",
                   ],
                 },
               ]}
-              skills={["Sales", "Marketing", "Automation", "Support", "Linux", "Setup Server"]}
+              skills={["Linux", "Nginx", "Apache", "cPanel", "SSL/TLS", "DNS", "Python", "Automation", "Server Hardening"]}
               link="https://cloudzone.vn/"
             />
           </BlurFade>
@@ -197,7 +238,6 @@ export default function Page() {
               delay={BLUR_FADE_DELAY * 8 + id * 0.05}
             >
               <ResumeCard
-                key={education.school}
                 href={education.href}
                 logoUrl={education.logoUrl}
                 altText={education.school}
@@ -214,9 +254,7 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
             <h2 className="text-xl font-bold">Skills</h2>
 
-            <h3 className="text-lg font-bold mt-4 mb-2">
-              Programming Languages
-            </h3>
+            <h3 className="text-lg font-bold mt-4 mb-2">Programming Languages</h3>
             <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "JavaScript", icon: "js" },
@@ -226,40 +264,10 @@ export default function Page() {
                 { name: "Node.js", icon: "nodejs" },
                 { name: "Go Lang", icon: "go" },
                 { name: "Lua", icon: "lua" },
-              ].map((skill) => (
-                <div key={skill.icon} className="relative group">
-                  {/* Icon */}
-                  <img
-                    alt={skill.name}
-                    width={48}
-                    height={48}
-                    src={`https://skillicons.dev/icons?i=${skill.icon}&theme=dark`}
-                    className="object-contain cursor-pointer transition-transform duration-300"
-                  />
-
-                  {/* Tooltip (TOP) */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute bottom-full left-1/2 z-10 mb-2
-                      -translate-x-1/2
-                      rounded-md bg-white/90 backdrop-blur
-                      px-3 py-1.5
-                      text-xs font-medium text-black whitespace-nowrap
-                      opacity-0 translate-y-1 scale-95
-                      transition-all duration-200
-                      group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-                    "
-                  >
-                    {skill.name}
-                  </div>
-                </div>
-              ))}
+              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
             </div>
-            {/* Frontend */}
-            <h3 className="text-lg font-bold mt-4 mb-2">
-              Frontend
-            </h3>
+
+            <h3 className="text-lg font-bold mt-4 mb-2">Frontend</h3>
             <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "HTML", icon: "html" },
@@ -270,37 +278,9 @@ export default function Page() {
                 { name: "Next.js", icon: "nextjs" },
                 { name: "Tailwind CSS", icon: "tailwindcss" },
                 { name: "SCSS", icon: "scss" },
-              ].map((skill) => (
-                <div key={skill.icon} className="relative group">
-                  {/* Icon */}
-                  <img
-                    alt={skill.name}
-                    width={48}
-                    height={48}
-                    src={`https://skillicons.dev/icons?i=${skill.icon}&theme=dark`}
-                    className="object-contain cursor-pointer transition-transform duration-300"
-                  />
-
-                  {/* Tooltip (TOP) */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute bottom-full left-1/2 z-10 mb-2
-                      -translate-x-1/2
-                      rounded-md bg-white/90 backdrop-blur
-                      px-3 py-1.5
-                      text-xs font-medium text-black whitespace-nowrap
-                      opacity-0 translate-y-1 scale-95
-                      transition-all duration-200
-                      group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-                    "
-                  >
-                    {skill.name}
-                  </div>
-                </div>
-              ))}
+              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
             </div>
-            {/* Backend */}
+
             <h3 className="text-lg font-bold mt-4 mb-2">
               {" "}<Highlighter action="circle" color="#ff0000ff" iterations={2}>Backend</Highlighter>
             </h3>
@@ -313,40 +293,10 @@ export default function Page() {
                 { name: "Spring", icon: "spring" },
                 { name: "MongoDB", icon: "mongodb" },
                 { name: "MySQL", icon: "mysql" },
-              ].map((skill) => (
-                <div key={skill.icon} className="relative group">
-                  {/* Icon */}
-                  <img
-                    alt={skill.name}
-                    width={48}
-                    height={48}
-                    src={`https://skillicons.dev/icons?i=${skill.icon}&theme=dark`}
-                    className="object-contain cursor-pointer transition-transform duration-300"
-                  />
-
-                  {/* Tooltip (TOP) */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute bottom-full left-1/2 z-10 mb-2
-                      -translate-x-1/2
-                      rounded-md bg-white/90 backdrop-blur
-                      px-3 py-1.5
-                      text-xs font-medium text-black whitespace-nowrap
-                      opacity-0 translate-y-1 scale-95
-                      transition-all duration-200
-                      group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-                    "
-                  >
-                    {skill.name}
-                  </div>
-                </div>
-              ))}
+              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
             </div>
-            {/* DevOps */}
-            <h3 className="text-lg font-bold mt-4 mb-2">
-              DevOps
-            </h3>
+
+            <h3 className="text-lg font-bold mt-4 mb-2">DevOps</h3>
             <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "Docker", icon: "docker" },
@@ -355,145 +305,28 @@ export default function Page() {
                 { name: "CloudFlare", icon: "cloudflare" },
                 { name: "Github Actions", icon: "githubactions" },
                 { name: "Linux", icon: "linux" },
-              ].map((skill) => (
-                <div key={skill.icon} className="relative group">
-                  {/* Icon */}
-                  <img
-                    alt={skill.name}
-                    width={48}
-                    height={48}
-                    src={`https://skillicons.dev/icons?i=${skill.icon}&theme=dark`}
-                    className="object-contain cursor-pointer transition-transform duration-300"
-                  />
-
-                  {/* Tooltip (TOP) */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute bottom-full left-1/2 z-10 mb-2
-                      -translate-x-1/2
-                      rounded-md bg-white/90 backdrop-blur
-                      px-3 py-1.5
-                      text-xs font-medium text-black whitespace-nowrap
-                      opacity-0 translate-y-1 scale-95
-                      transition-all duration-200
-                      group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-                    "
-                  >
-                    {skill.name}
-                  </div>
-                </div>
-              ))}
+              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
             </div>
-            {/* Other Skills */}
-            <h3 className="text-lg font-bold mt-4 mb-2">
-              Other
-            </h3>
+
+            <h3 className="text-lg font-bold mt-4 mb-2">Other</h3>
             <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
               {[
                 { name: "VS Code", icon: "vscode" },
                 { name: "Wordpress", icon: "wordpress" },
                 { name: "Github", icon: "github" },
-                { name: "kali linux", icon: "kali" },
-                { name: "Adope Photoshop", icon: "photoshop" },
-                { name: "Intellij IDEA", icon: "idea" },
-              ].map((skill) => (
-                <div key={skill.icon} className="relative group">
-                  {/* Icon */}
-                  <img
-                    alt={skill.name}
-                    width={48}
-                    height={48}
-                    src={`https://skillicons.dev/icons?i=${skill.icon}&theme=dark`}
-                    className="object-contain cursor-pointer transition-transform duration-300"
-                  />
-
-                  {/* Tooltip (TOP) */}
-                  <div
-                    className="
-                      pointer-events-none
-                      absolute bottom-full left-1/2 z-10 mb-2
-                      -translate-x-1/2
-                      rounded-md bg-white/90 backdrop-blur
-                      px-3 py-1.5
-                      text-xs font-medium text-black whitespace-nowrap
-                      opacity-0 translate-y-1 scale-95
-                      transition-all duration-200
-                      group-hover:opacity-100 group-hover:translate-y-0 group-hover:scale-100
-                    "
-                  >
-                    {skill.name}
-                  </div>
-                </div>
-              ))}
+                { name: "Kali Linux", icon: "kali" },
+                { name: "Adobe Photoshop", icon: "photoshop" },
+                { name: "IntelliJ IDEA", icon: "idea" },
+              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
             </div>
           </BlurFade>
 
-
-          <div className="flex flex-wrap gap-1">
-            {DATA.skills.map((skill, id) => (
-              <BlurFade key={skill} delay={BLUR_FADE_DELAY * 10 + id * 0.05}>
+          <BlurFade delay={BLUR_FADE_DELAY * 10}>
+            <div className="flex flex-wrap gap-1">
+              {DATA.skills.map((skill) => (
                 <Badge key={skill}>{skill}</Badge>
-              </BlurFade>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section id="hacking-skills">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 9}>
-            <h2 className="text-xl font-bold">
-              Skills Hacking / Penetration Testing
-            </h2>
-
-            {/* SQL INJECTION */}
-            <TextAttackFlow
-              title="SQL Injection – Technical Workflow"
-              steps={[
-                "Input Analysis",
-                "SQL Injection Detection",
-                "Database Enumeration",
-                "Automated Testing (sqlmap)",
-                "Risk Assessment & Reporting",
-              ]}
-            />
-
-            {/* XSS */}
-            <TextAttackFlow
-              title="Cross-Site Scripting (XSS) – Technical Workflow"
-              steps={[
-                "Input Reflection",
-                "Context Analysis",
-                "Payload Injection",
-                "Script Execution",
-                "Impact Evaluation",
-                "Output Encoding Review",
-              ]}
-            />
-
-            {/* CSRF */}
-            <TextAttackFlow
-              title="CSRF – Technical Workflow"
-              steps={[
-                "State-Changing Request Analysis",
-                "CSRF Token Validation",
-                "Request Forgery Simulation",
-                "Privilege Abuse Testing",
-                "Mitigation Review",
-              ]}
-            />
-
-            {/* IDOR */}
-            <TextAttackFlow
-              title="IDOR / Broken Access Control – Technical Workflow"
-              steps={[
-                "Endpoint Discovery",
-                "Parameter Manipulation",
-                "Unauthorized Access Attempt",
-                "Privilege Escalation Testing",
-                "Access Control Review",
-              ]}
-            />
+              ))}
+            </div>
           </BlurFade>
         </div>
       </section>
@@ -524,7 +357,6 @@ export default function Page() {
               >
                 <ProjectCard
                   href={project.href}
-                  key={project.title}
                   title={project.title}
                   description={project.description}
                   dates={project.dates}
@@ -603,8 +435,11 @@ export default function Page() {
               </p>
 
               <div className="mt-6 flex justify-center">
-                <a href="/assets/certificates/Phan-Duy-Khai-CV.pdf">
-                  <button className="rounded-md border px-3 py-1">View Resume</button>
+                <a
+                  href="/assets/certificates/Phan-Duy-Khai-CV.pdf"
+                  className="rounded-md border px-3 py-1 text-sm hover:bg-accent transition-colors"
+                >
+                  View Resume
                 </a>
               </div>
             </div>
