@@ -213,18 +213,26 @@ export default function Page() {
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">Certificates</h2>
           </BlurFade>
-            <BlurFade
-              delay={BLUR_FADE_DELAY * 8 * 0.05}
-            >
-              <ResumeCard
-                href="/assets/certificates/microsoft-office-specialist-2016-master.pdf"
-                logoUrl="https://cdn.lduy.dev/certificates/logo/microsoft-logo.png"
-                altText="Microsoft Office Specialist 2016 Master"
-                title="Microsoft Office Specialist 2016 Master"
-                subtitle="Microsoft"
-                period="2020"
-              />
-            </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
+            <ResumeCard
+              href="/assets/certificates/aws.pdf"
+              logoUrl="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+              altText="AWS Training & Certification"
+              title="AWS Security Fundamentals"
+              subtitle="AWS"
+              period="6/2/2026"
+            />
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.1}>
+            <ResumeCard
+              href="/assets/certificates/microsoft-office-specialist-2016-master.pdf"
+              logoUrl="https://cdn.lduy.dev/certificates/logo/microsoft-logo.png"
+              altText="Microsoft Office Specialist 2016 Master"
+              title="Microsoft Office Specialist 2016 Master"
+              subtitle="Microsoft"
+              period="2020"
+            />
+          </BlurFade>
         </div>
       </section>
       <section id="education">
