@@ -104,7 +104,7 @@ export default function Page() {
             {/* PWSDATA */}
             <WorkExperienceCard
               company="Power Web Services"
-              title="[Founder & CEO] Leader Software Engineer"
+              title="Leader Software Engineer"
               companyLogo="../pws.webp"
               status="Current"
               statusColor="bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20"

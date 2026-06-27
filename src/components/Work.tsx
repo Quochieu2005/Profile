@@ -1,6 +1,6 @@
 "use client"
 
-import { ChevronRight, ExternalLink } from "lucide-react"
+import { ChevronRight, ExternalLink, Briefcase} from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -73,7 +73,7 @@ export function WorkExperienceCard({
             </div>
             <div className="text-xs sm:text-sm tabular-nums text-muted-foreground">{dateRange}</div>
           </div>
-        <div className="font-sans text-xs inline-flex items-center gap-1">{title}</div>
+        <div className="font-sans text-xs inline-flex items-center gap-1"><Briefcase className="size-3" />{title}</div>
 
           {!isExpanded && <div className="text-xs text-muted-foreground mt-1 italic">Click to see details</div>}
 

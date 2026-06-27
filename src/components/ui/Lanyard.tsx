@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { Canvas, extend, useFrame } from '@react-three/fiber';
 import {
   useGLTF,
@@ -32,8 +32,23 @@ declare global {
 const cardGLB = "/assets/card.glb";
 const lanyard = "/assets/lanyard.png";
 
-
 extend({ MeshLineGeometry, MeshLineMaterial });
+
+// ── Device capability detection ─────────────────────────────────
+type DeviceTier = "low" | "medium" | "high";
+
+function getDeviceTier(): DeviceTier {
+  if (typeof window === "undefined") return "high";
+  const cores = navigator.hardwareConcurrency ?? 4;
+  const memory = (navigator as any).deviceMemory ?? 8;
+  const isMobile = /Mobi|Android|iPhone/i.test(navigator.userAgent);
+  const smallScreen = window.innerWidth < 768;
+
+  // Low-end: few cores, little RAM, or mobile small screen
+  if (cores <= 2 || memory <= 2 || (isMobile && smallScreen)) return "low";
+  if (cores <= 4 || memory <= 4 || isMobile) return "medium";
+  return "high";
+}
 
 interface LanyardProps {
   position?: [number, number, number];
@@ -48,18 +63,39 @@ export default function Lanyard({
   fov = 21,
   transparent = true,
 }: LanyardProps) {
+  const [tier, setTier] = useState<DeviceTier>("high");
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    setTier(getDeviceTier());
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // Very weak device or reduced motion → ẩn hoàn toàn
+  if (tier === "low" || reducedMotion) {
+    return null;
+  }
+
+  const dpr = tier === "medium" ? 1.5 : 2;
+
   return (
     <div className="lanyard-wrapper">
       <Canvas
         camera={{ position, fov }}
         gl={{ alpha: transparent }}
+        dpr={dpr}
+        frameloop="demand"
         onCreated={({ gl }) =>
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
         }
       >
         <ambientLight intensity={Math.PI} />
         <Physics gravity={gravity} timeStep={1 / 60}>
-          <Band />
+          <Band tier={tier} />
         </Physics>
         <Environment blur={0.75}>
           <Lightformer
@@ -69,22 +105,26 @@ export default function Lanyard({
             rotation={[0, 0, Math.PI / 3]}
             scale={[100, 0.1, 1]}
           />
+          {tier !== "medium" && (
+            <Lightformer
+              intensity={3}
+              color="white"
+              position={[-1, -1, 1]}
+              rotation={[0, 0, Math.PI / 3]}
+              scale={[100, 0.1, 1]}
+            />
+          )}
+          {tier !== "medium" && (
+            <Lightformer
+              intensity={3}
+              color="white"
+              position={[1, 1, 1]}
+              rotation={[0, 0, Math.PI / 3]}
+              scale={[100, 0.1, 1]}
+            />
+          )}
           <Lightformer
-            intensity={3}
-            color="white"
-            position={[-1, -1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={3}
-            color="white"
-            position={[1, 1, 1]}
-            rotation={[0, 0, Math.PI / 3]}
-            scale={[100, 0.1, 1]}
-          />
-          <Lightformer
-            intensity={10}
+            intensity={tier === "medium" ? 6 : 10}
             color="white"
             position={[-10, 0, 14]}
             rotation={[0, Math.PI / 2, Math.PI / 3]}
@@ -99,10 +139,10 @@ export default function Lanyard({
 interface BandProps {
   maxSpeed?: number;
   minSpeed?: number;
+  tier?: DeviceTier;
 }
 
-function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
-  // Using "any" for refs since the exact types depend on Rapier's internals
+function Band({ maxSpeed = 50, minSpeed = 0, tier = "high" }: BandProps) {
   const band = useRef<any>(null);
   const fixed = useRef<any>(null);
   const j1 = useRef<any>(null);
@@ -110,18 +150,18 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
   const j3 = useRef<any>(null);
   const card = useRef<any>(null);
 
-  const vec = new THREE.Vector3();
-  const ang = new THREE.Vector3();
-  const rot = new THREE.Vector3();
-  const dir = new THREE.Vector3();
+  const vec = useMemo(() => new THREE.Vector3(), []);
+  const ang = useMemo(() => new THREE.Vector3(), []);
+  const rot = useMemo(() => new THREE.Vector3(), []);
+  const dir = useMemo(() => new THREE.Vector3(), []);
 
-  const segmentProps: any = {
+  const segmentProps: any = useMemo(() => ({
     type: "dynamic" as RigidBodyProps["type"],
     canSleep: true,
     colliders: false,
     angularDamping: 4,
     linearDamping: 4,
-  };
+  }), []);
 
   const { nodes, materials } = useGLTF(cardGLB) as any;
   const texture = useTexture(lanyard);
@@ -148,7 +188,6 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
     const handleResize = (): void => {
       setIsSmall(window.innerWidth < 1024);
     };
-
     window.addEventListener("resize", handleResize);
     return (): void => window.removeEventListener("resize", handleResize);
   }, []);
@@ -169,6 +208,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
       };
     }
   }, [hovered, dragged]);
+
+  const curvePoints = tier === "medium" ? 16 : 32;
 
   useFrame((state, delta) => {
     if (dragged && typeof dragged !== "boolean") {
@@ -201,7 +242,7 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
       curve.points[1].copy(j2.current.lerped);
       curve.points[2].copy(j1.current.lerped);
       curve.points[3].copy(fixed.current.translation());
-      band.current.geometry.setPoints(curve.getPoints(32));
+      band.current.geometry.setPoints(curve.getPoints(curvePoints));
       ang.copy(card.current.angvel());
       rot.copy(card.current.rotation());
       card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
@@ -275,8 +316,8 @@ function Band({ maxSpeed = 50, minSpeed = 0 }: BandProps) {
             <mesh geometry={nodes.card.geometry}>
               <meshPhysicalMaterial
                 map={materials.base.map}
-                map-anisotropy={16}
-                clearcoat={1}
+                map-anisotropy={tier === "medium" ? 4 : 16}
+                clearcoat={tier === "medium" ? 0.5 : 1}
                 clearcoatRoughness={0.15}
                 roughness={0.9}
                 metalness={0.8}
