@@ -35,7 +35,7 @@ function SkillIcon({ name, icon }: { name: string; icon: string }) {
 export default function Page() {
   return (
     
-    <main className="flex flex-col min-h-[100dvh] space-y-10 z-0 -mt-20 px-8 md:px-0 select-none">
+    <main className="flex flex-col min-h-[100dvh] mt-10 space-y-10 z-0 -mt-20 md:px-0 select-none">
       <Lanyard />
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
