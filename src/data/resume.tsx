@@ -53,10 +53,10 @@ export const DATA = {
 
         navbar: false,
       },
-      Youtube: {
-        name: "Youtube",
-        url: "https://www.youtube.com/@d_khaiw_",
-        icon: Icons.youtube,
+      Website: {
+        name: "Website",
+        url: "https://pwsdata.vn/",
+        icon: Icons.globe,
         navbar: true,
       },
       email: {
