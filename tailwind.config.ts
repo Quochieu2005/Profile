@@ -23,6 +23,11 @@ const config = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       colors: {
+        "fd-card": "hsl(var(--fd-card))",
+        "fd-secondary": "hsl(var(--fd-secondary))",
+        "fd-accent": "hsl(var(--fd-accent))",
+        "fd-accent-foreground": "hsl(var(--fd-accent-foreground))",
+        "fd-muted-foreground": "hsl(var(--fd-muted-foreground))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

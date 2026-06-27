@@ -1,0 +1,54 @@
+---
+title: "MocPhim - Nền tảng xem phim trực tuyến"
+description: "Full-stack movie streaming platform với Next.js, Spring Boot, PostgreSQL và Redis"
+date: "2026-06-27"
+tags: ["Release", "FullStack", "Movie"]
+version: "1.0"
+---
+
+![MocPhim](</phimhay.png>)
+
+- **Nền tảng xem phim trực tuyến** full-stack với giao diện hiện đại
+- **Hệ thống xác thực** đăng ký, đăng nhập, Google OAuth2, quên mật khẩu
+- **Cá nhân hóa** bookmark, theo dõi tiến độ xem, lịch sử tìm kiếm
+- **Triển khai production** với Docker, Nginx, Vercel và Duckdns
+
+```ts
+// Khởi tạo API client
+const api = new MocPhimAPI({
+  baseUrl: "https://moc-phim-api.duckdns.org",
+})
+// Lấy danh sách phim trang chủ
+const home = await api.getHome()
+// Đăng nhập bằng Google
+await api.loginWithGoogle()
+```
+
+<Accordion type="multiple" collapsible className="w-full not-prose">
+  <AccordionItem value="item-1">
+    <AccordionTrigger>Tính năng</AccordionTrigger>
+    <AccordionContent className="flex flex-col gap-4 text-balance">
+      <ul className="list-disc space-y-2 pl-4">
+        <li><strong>Duyệt & Tìm kiếm phim</strong> với banner hero, danh sách phim mới, Top 10 phim bộ, phim nổi bật, lọc theo thể loại/quốc gia/năm</li>
+        <li><strong>Chi tiết & Xem phim</strong> với poster, mô tả, diễn viên, đạo diễn, danh sách tập, hỗ trợ Vietsub/Thuyết minh/Lồng tiếng</li>
+        <li><strong>Xác thực người dùng</strong> đăng ký (xác minh email), đăng nhập email/mật khẩu, Google OAuth2, quên mật khẩu, JWT access token + refresh token</li>
+        <li><strong>Cá nhân hóa</strong> bookmark phim yêu thích, theo dõi tiến độ xem, lịch sử tìm kiếm</li>
+        <li><strong>Quản trị & Hệ thống</strong> admin dashboard, đồng bộ phim tự động từ OPhim API, caching Redis, thống kê lượt xem</li>
+        <li><strong>Dark/Light mode</strong> với hiệu ứng animation, Swiper carousel, Framer Motion</li>
+      </ul>
+    </AccordionContent>
+  </AccordionItem>
+  <AccordionItem value="item-2">
+    <AccordionTrigger>Sửa lỗi</AccordionTrigger>
+    <AccordionContent className="flex flex-col gap-4 text-balance">
+      <ul className="list-disc space-y-2 pl-4">
+        <li>Fixed CORS configuration cho phép cross-origin giữa Frontend và Backend</li>
+        <li>Resolved JWT token expiration handling với refresh token rotation</li>
+        <li>Fixed Redis cache invalidation khi đồng bộ dữ liệu phim mới</li>
+        <li>Improved error handling cho OAuth2 callback và email verification</li>
+        <li>Fixed Docker container networking giữa Spring Boot và PostgreSQL</li>
+        <li>Resolved responsive layout issues trên thiết bị di động và tablet</li>
+      </ul>
+    </AccordionContent>
+  </AccordionItem>
+</Accordion>
