@@ -6,7 +6,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
-import Markdown from "react-markdown";
 import TextType from "@/components/magicui/text-type"
 import { Highlighter } from "@/components/magicui/highlighter"
 import { WorkExperienceCard } from "@/components/Work";
@@ -36,7 +35,7 @@ function SkillIcon({ name, icon }: { name: string; icon: string }) {
 export default function Page() {
   return (
     
-    <main className="flex flex-col min-h-[100dvh] space-y-10 z-0 -mt-20 -px-8 select-none">
+    <main className="flex flex-col min-h-[100dvh] space-y-10 z-0 -mt-20 px-8 md:px-0 select-none">
       <Lanyard />
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">

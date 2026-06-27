@@ -2,7 +2,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { getAllChangelogs } from "@/lib/changelog"
 import { formatDate } from "@/lib/utils"
 import { ChangelogContent } from "@/components/changelog-content"
-import { ExternalLink, GitCommit, PackagePlus, Sparkles, Zap, Brain, Eye, Cpu } from "lucide-react"
+import { ExternalLink, GitCommit, PackagePlus, Sparkles, Zap, Brain, Eye } from "lucide-react"
 
 const tagStyles: Record<string, string> = {
   release: "bg-green-500/10 text-green-600 dark:text-green-400 border-green-500/20",

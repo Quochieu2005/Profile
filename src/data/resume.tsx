@@ -1,6 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon, RocketIcon } from "lucide-react";
-import { title } from "process";
+import { HomeIcon, RocketIcon } from "lucide-react";
 
 export const DATA = {
   name: "Khai Duy",
