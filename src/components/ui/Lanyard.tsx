@@ -86,9 +86,10 @@ export default function Lanyard({
     <div className="lanyard-wrapper">
       <Canvas
         camera={{ position, fov }}
-        gl={{ alpha: transparent }}
+        gl={{ alpha: transparent, preserveDrawingBuffer: true }}
         dpr={dpr}
-        frameloop="demand"
+        frameloop="always"
+        performance={{ min: 0.5 }}
         onCreated={({ gl }) =>
           gl.setClearColor(new THREE.Color(0x000000), transparent ? 0 : 1)
         }
@@ -210,8 +211,27 @@ function Band({ maxSpeed = 50, minSpeed = 0, tier = "high" }: BandProps) {
   }, [hovered, dragged]);
 
   const curvePoints = tier === "medium" ? 16 : 32;
+  const isVisible = useRef(true);
+
+  // Handle tab visibility change — wake up physics when returning
+  useEffect(() => {
+    const onVisibilityChange = () => {
+      isVisible.current = document.visibilityState === "visible";
+      if (isVisible.current) {
+        // Wake up all rigid bodies so they don't stay frozen
+        [card, j1, j2, j3].forEach((ref) => {
+          ref.current?.wakeUp();
+        });
+      }
+    };
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", onVisibilityChange);
+  }, []);
 
   useFrame((state, delta) => {
+    // Clamp delta to prevent physics explosion after tab switch
+    const safeDelta = Math.min(delta, 0.1);
+
     if (dragged && typeof dragged !== "boolean") {
       vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
       dir.copy(vec).sub(state.camera.position).normalize();
@@ -235,7 +255,7 @@ function Band({ maxSpeed = 50, minSpeed = 0, tier = "high" }: BandProps) {
         );
         ref.current.lerped.lerp(
           ref.current.translation(),
-          delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
+          safeDelta * (minSpeed + clampedDistance * (maxSpeed - minSpeed))
         );
       });
       curve.points[0].copy(j3.current.translation());

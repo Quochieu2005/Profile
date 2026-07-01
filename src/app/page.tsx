@@ -225,6 +225,17 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
             <ResumeCard
+              href="https://www.hackerrank.com/certificates/6dd19298a195"
+              logoUrl="https://cdn.lduy.dev/certificates/logo/hackerrank.png"
+              altText="HackerRank"
+              title="SQL (Intermediate)"
+              subtitle="HackerRank"
+              period="1/7/2026"
+              target="_blank"
+            />
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
+            <ResumeCard
               href="https://www.hackerrank.com/certificates/4a9b3dc6febd"
               logoUrl="https://cdn.lduy.dev/certificates/logo/hackerrank.png"
               altText="HackerRank"
