@@ -214,12 +214,35 @@ export default function Page() {
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
             <ResumeCard
+              href="https://www.hackerrank.com/certificates/85ce2f107570"
+              logoUrl="https://cdn.lduy.dev/certificates/logo/hackerrank.png"
+              altText="HackerRank"
+              title="Software Engineer"
+              subtitle="HackerRank"
+              period="1/7/2026"
+              target="_blank"
+            />
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
+            <ResumeCard
+              href="https://www.hackerrank.com/certificates/4a9b3dc6febd"
+              logoUrl="https://cdn.lduy.dev/certificates/logo/hackerrank.png"
+              altText="HackerRank"
+              title="Frontend Developer"
+              subtitle="HackerRank"
+              period="1/7/2026"
+              target="_blank"
+            />
+          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
+            <ResumeCard
               href="/assets/certificates/aws.pdf"
               logoUrl="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
               altText="AWS Training & Certification"
               title="AWS Security Fundamentals"
               subtitle="AWS"
               period="6/2/2026"
+              target="_blank"
             />
           </BlurFade>
           <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.1}>
@@ -230,6 +253,7 @@ export default function Page() {
               title="Microsoft Office Specialist 2016 Master"
               subtitle="Microsoft"
               period="2020"
+              target="_blank"
             />
           </BlurFade>
         </div>
