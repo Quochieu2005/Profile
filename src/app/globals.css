@@ -128,6 +128,28 @@
     content: counter(line);
     @apply inline-block w-4 mr-4 text-right text-gray-500;
   }
+
+  /* ── Animated Theme Toggler View Transitions ── */
+  html[data-magicui-theme-vt="active"]::view-transition-old(root),
+  html[data-magicui-theme-vt="active"]::view-transition-new(root) {
+    animation: none;
+  }
+
+  html[data-magicui-theme-vt="active"]::view-transition-old(root) {
+    z-index: 1;
+  }
+
+  html[data-magicui-theme-vt="active"]::view-transition-new(root) {
+    z-index: 9999;
+  }
+
+  html[data-magicui-theme-vt="active"]::view-transition-new(root) {
+    clip-path: var(--magicui-theme-vt-clip-from, none);
+  }
+
+  ::view-transition-group(root) {
+    animation-duration: var(--magicui-theme-toggle-vt-duration, 400ms);
+  }
  
   code {
     counter-reset: line;
