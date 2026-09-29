@@ -21,21 +21,18 @@ export const metadata: Metadata = {
   },
   description: DATA.description,
   keywords: [
-    "Portfolio",
-    "Phan Duy Khai",
-    "phanduykhai05",
-    "phanduykhai",
-    "khaicybers",
-    "Khai Duy",
-    "Software Engineer",
-    "Full-Stack Developer",
-    "Cybersecurity",
-    "DevOps",
-    "React",
-    "Next.js",
-    "Portfolio",
+    "Thai Trung Quoc Hieu",
+    "Software Engineering Student",
+    "Backend Developer",
+    "PHP",
+    "Laravel",
+    "REST API",
+    "MySQL",
+    "SQL Server",
+    "SQLite",
     "PTIT",
     "Vietnam",
+    "Portfolio",
   ],
   openGraph: {
     title: `${DATA.name}`,
@@ -46,7 +43,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/phanduykhai.jpg", // Your avatar
+        url: "/phanduykhai.jpg?v=2026-09-29-2", // Your avatar
         width: 1200,
         height: 630,
         alt: `${DATA.name} - Software Engineer Portfolio`,
@@ -67,7 +64,7 @@ export const metadata: Metadata = {
   twitter: {
     title: `${DATA.name}`,
     card: "summary_large_image",
-    images: ["/phanduykhai.jpg"],
+    images: ["/phanduykhai.jpg?v=2026-09-29-2"],
   },
   verification: {
     google: "", // Add Google Search Console verification code
@@ -78,10 +75,10 @@ export const metadata: Metadata = {
       "@context": "https://schema.org",
       "@type": "Person",
       name: DATA.name,
-      jobTitle: "Software Engineer",
+      jobTitle: "Backend Developer Intern",
       description: DATA.description,
       url: DATA.url,
-      image: `${DATA.url}/phanduykhai.jpg`,
+      image: `${DATA.url}/phanduykhai.jpg?v=2026-09-29-2`,
       sameAs: [
         DATA.contact.social.GitHub.url,
         // Add other social links

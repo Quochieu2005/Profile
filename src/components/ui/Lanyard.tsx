@@ -166,6 +166,15 @@ function Band({ maxSpeed = 50, minSpeed = 0, tier = "high" }: BandProps) {
 
   const { nodes, materials } = useGLTF(cardGLB) as any;
   const texture = useTexture(lanyard);
+  const profileTexture = useTexture("/phanduykhai.jpg?v=2026-09-29-2");
+  profileTexture.colorSpace = THREE.SRGBColorSpace;
+
+  const cardMesh = nodes?.card;
+  const photoFrame = nodes?.photoFrame;
+  const clipMesh = nodes?.clip;
+  const clampMesh = nodes?.clamp;
+  const baseMaterial = materials?.base;
+  const metalMaterial = materials?.metal;
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([
@@ -333,22 +342,36 @@ function Band({ maxSpeed = 50, minSpeed = 0, tier = "high" }: BandProps) {
               );
             }}
           >
-            <mesh geometry={nodes.card.geometry}>
-              <meshPhysicalMaterial
-                map={materials.base.map}
-                map-anisotropy={tier === "medium" ? 4 : 16}
-                clearcoat={tier === "medium" ? 0.5 : 1}
-                clearcoatRoughness={0.15}
-                roughness={0.9}
-                metalness={0.8}
+            {cardMesh && (
+              <mesh geometry={cardMesh.geometry}>
+                <meshPhysicalMaterial
+                  map={baseMaterial?.map ?? undefined}
+                  map-anisotropy={tier === "medium" ? 4 : 16}
+                  clearcoat={tier === "medium" ? 0.5 : 1}
+                  clearcoatRoughness={0.15}
+                  roughness={0.9}
+                  metalness={0.8}
+                />
+              </mesh>
+            )}
+            {photoFrame ? (
+              <mesh geometry={photoFrame.geometry} position={[0, 0, 0.01]}>
+                <meshStandardMaterial map={profileTexture} roughness={0.8} metalness={0.1} />
+              </mesh>
+            ) : (
+              <mesh position={[0, 0, 0.01]}>
+                <planeGeometry args={[1.2, 1.5]} />
+                <meshStandardMaterial map={profileTexture} roughness={0.8} metalness={0.1} />
+              </mesh>
+            )}
+            {clipMesh && (
+              <mesh
+                geometry={clipMesh.geometry}
+                material={metalMaterial}
+                material-roughness={0.3}
               />
-            </mesh>
-            <mesh
-              geometry={nodes.clip.geometry}
-              material={materials.metal}
-              material-roughness={0.3}
-            />
-            <mesh geometry={nodes.clamp.geometry} material={materials.metal} />
+            )}
+            {clampMesh && <mesh geometry={clampMesh.geometry} material={metalMaterial} />}
           </group>
         </RigidBody>
       </group>

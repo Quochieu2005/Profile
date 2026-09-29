@@ -1,17 +1,13 @@
-import { HackathonCard } from "@/components/hackathon-card";
 import BlurFade from "@/components/magicui/blur-fade";
 import { ProjectCard } from "@/components/project-card";
 import { ResumeCard } from "@/components/resume-card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { WorkExperienceCard } from "@/components/Work";
 import { DATA } from "@/data/resume";
 import Link from "next/link";
-import TextType from "@/components/magicui/text-type"
-import { Highlighter } from "@/components/magicui/highlighter"
-import { WorkExperienceCard } from "@/components/Work";
-import Lanyard from '@/components/ui/Lanyard';
-import { SparklesText } from "@/components/magicui/sparkles-text";
-import { AuroraText } from "@/components/magicui/aurora-text";
+import TextType from "@/components/magicui/text-type";
+
 const BLUR_FADE_DELAY = 0.04;
 
 function SkillIcon({ name, icon }: { name: string; icon: string }) {
@@ -29,28 +25,71 @@ function SkillIcon({ name, icon }: { name: string; icon: string }) {
         {name}
       </div>
     </div>
-  )
+  );
 }
+
+const skillGroups = [
+  {
+    title: "Programming Languages",
+    items: [
+      { name: "PHP", icon: "php" },
+      { name: "JavaScript", icon: "js" },
+      { name: "SQL", icon: "mysql" },
+      { name: "Node.js", icon: "nodejs" },
+    ],
+  },
+  {
+    title: "Frontend",
+    items: [
+      { name: "React", icon: "react" },
+      { name: "Next.js", icon: "nextjs" },
+      { name: "HTML", icon: "html" },
+      { name: "CSS", icon: "css" },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
+    ],
+  },
+  {
+    title: "Backend",
+    items: [
+      { name: "Laravel", icon: "laravel" },
+      { name: "REST API", icon: "api" },
+      { name: "MVC", icon: "php" },
+      { name: "MySQL", icon: "mysql" },
+      { name: "SQL Server", icon: "microsoftsqlserver" },
+      { name: "SQLite", icon: "sqlite" },
+    ],
+  },
+  {
+    title: "Tools & DevOps",
+    items: [
+      { name: "Docker", icon: "docker" },
+      { name: "Git", icon: "git" },
+      { name: "GitHub", icon: "github" },
+      { name: "Postman", icon: "postman" },
+      { name: "Linux", icon: "linux" },
+    ],
+  },
+];
 
 export default function Page() {
   return (
-    
-    <main className="flex flex-col min-h-[100dvh] mt-10 space-y-10 z-0 -mt-20 md:px-0 select-none">
-      <Lanyard />
+    <main className="flex min-h-[100dvh] flex-col space-y-10 -mt-20 pt-10 md:px-0 select-none z-0">
       <section id="hero">
         <div className="mx-auto w-full max-w-2xl space-y-8">
-          <div className="gap-2 flex justify-between">
-            <div className="flex-col flex flex-1 space-y-1.5">
-              <TextType 
+          <div className="flex justify-between gap-2">
+            <div className="flex flex-1 flex-col space-y-1.5">
+              <TextType
                 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none"
-                text={"Hi, I'm Khai 👋"}
+                text={`Hi, I'm ${DATA.name.split(" ").slice(-2).join(" ") || DATA.name} 👋`}
                 pauseDuration={20000}
-                />
-              <p
-                className="max-w-[600px] md:text-xl select-none"
-              >4th year majoring in Software Engineering at PTIT. I love building things and helping people. I like Cybersecurity and DevOps.
+              />
+              <p className="max-w-[600px] md:text-xl select-none">
+                Software Engineering student at PTIT focused on backend development,
+                REST APIs, databases, and deployment. I enjoy turning business needs
+                into reliable web solutions.
               </p>
             </div>
+
             <BlurFade delay={BLUR_FADE_DELAY}>
               <Avatar className="size-28 border">
                 <AvatarImage alt={DATA.name} src={DATA.avatarUrl} />
@@ -60,225 +99,74 @@ export default function Page() {
           </div>
         </div>
       </section>
+
       <section id="about">
         <BlurFade delay={BLUR_FADE_DELAY * 3}>
           <h2 className="text-xl font-bold">About</h2>
         </BlurFade>
         <BlurFade>
           <p className="prose max-w-full text-pretty font-sans text-sm text-muted-foreground dark:prose-invert leading-relaxed select-none">
-            I started with Telegram Bots and {" "}<Highlighter action="circle" color="#ff0000ff" iterations={1}> Backend Development</Highlighter>{" "} and now specialize in <Highlighter action="underline" color="#FF9800">Full-Stack Development</Highlighter> and <Highlighter action="underline" color="#FF9800">DevOps</Highlighter>. Outside of coding, I sharpen my <Highlighter action="underline" color="#00eeffff">Cybersecurity</Highlighter> skills through <Highlighter action="underline" color="#f85ae3ff">TryHackMe CTFs</Highlighter> and share knowledge via YouTube tutorials. I reinforce these skills by operating a homelab with  <Highlighter action="box" color="#029effff">2+ enterprise servers</Highlighter>.
+            I am a backend-focused software engineering student with practical experience
+            building web applications and APIs using PHP, Laravel, JavaScript, and SQL.
+            My work centers on creating maintainable backend logic, designing database
+            structures, and supporting reliable deployment and system integrations for real-world products.
           </p>
         </BlurFade>
       </section>
+
       <section id="work">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 5}>
             <h2 className="text-xl font-bold select-none">Work Experience</h2>
           </BlurFade>
 
-          <BlurFade delay={BLUR_FADE_DELAY * 6} className="select-none">
-            {/* AI POWER */}
-            <WorkExperienceCard
-              company="AI Power Co., Ltd."
-              title="Software Developer"
-              companyLogo="https://aipower.vn/apple-touch-icon.png"
-              status="Current"
-              statusColor="bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20"
-              dateRange="Apr 2026 - Present"
-              positions={[
-                {
-                  title: "Software Developer",
-                  dateRange: "Apr 2026 - Present",
-                  highlights: [
-                    "Build and maintain cross-platform mobile applications using Flutter, delivering consistent UX across iOS and Android.",
-                    "Develop high-performance backend services and REST/gRPC APIs with Golang, handling concurrent workloads at scale.",
-                    "Implement AI-powered features and automation pipelines using Python (FastAPI, LangChain).",
-                    "Build interactive web applications with Next.js, React, and TypeScript, following modern component architecture and SSR patterns.",
-                    "Collaborate across the full stack — from database schema design (PostgreSQL, Redis) to CI/CD pipeline configuration.",
-                  ],
-                },
-              ]}
-              skills={["Flutter", "Golang", "Python", "React", "TypeScript", "Next.js", "FastAPI", "PostgreSQL", "Redis", "Docker", "gRPC"]}
-            />
-            {/* PWSDATA */}
-            <WorkExperienceCard
-              company="Power Web Services"
-              title="Leader Software Engineer"
-              companyLogo="../pws.webp"
-              status="Current"
-              statusColor="bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20"
-              dateRange="June 2025 - Present"
-              positions={[
-                {
-                  title: "Software Engineer",
-                  dateRange: "Jan 2024 - Present",
-                  description: ["Team Management and Leadership",
-                    "Backend and Frontend Development",
-                    "Database Management",
-                    "System Optimization",
-                    "DevOps and Automation",
-                    "Software Testing and Quality Assurance",
-                    "Collaboration and Communication",
-                  ],
-                },
-                {
-                  title: "Founder",
-                  dateRange: "June 2025 - Present",
-                  highlights: [
-                    "The system was built using Laravel and upgraded to a frontend using Nextjs, resulting in a smoother website with all the necessary software features found in businesses.",
-                    "Design and implement a system that simplifies the product selection and self-service process for users when they register and make purchases.",
-                    "Increase customer satisfaction by 65% ​​and reduce payment conflicts by 40%, boosting operational efficiency.",
-                  ],
-                },
-              ]}
-              skills={["Next.js", "React", "API", "Postman", "TailwindCSS", "Git", "Docker", "SQL"]}
-              link="https://pwsdata.vn/"
-            />
-            {/* Freelance */}
-              <WorkExperienceCard
-              company="Freelance Projects"
-              title="[Freelancer] Web Development & Automation"
-              companyLogo="../logoiconlan.png"
-              status="Current"
-              statusColor="bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20"
-              dateRange="Dec 2019 - Present"
-              positions={[
-                {
-                  title: "Developer Freelance",
-                  dateRange: "Dec 2019 - Sep 2020",
-                  description: ["Software Botnet Development",
-                    "Telegram Bot Development",
-                    "Study and develop automation tools",
-                    "Install windows briefly",
-                    "Website Development",
-                    
-                  ],
-                },
-                {
-                  title: "Freelance Premium",
-                  dateRange: "Dec 2019 - Present",
-                  description: ["Customer Support and Consultation",
-                    "Sales and Marketing",
-                    "Website Design",
-                    "Software Development",
-                    "Design and Development",
-                    "Technical Software Support",
-                    "Feedback Collection",
-                    "...",],
-                },
-              ]}
-              skills={["Sales", "Marketing", "Tools", "Support", "Linux", "Setup Server", "PHP", "JavaScript", "Nextjs", "React"]}
-              link="zalo://conversation?phone=0347959824"
-            />
-            {/* VPS/hosting */}
-            <WorkExperienceCard
-              company="Vps Hosting CloudZone"
-              title="Cloud Infrastructure Engineer"
-              companyLogo="../logo-cloudzone-white.webp"
-              status="Previous"
-              statusColor="bg-blue-500/10 text-blue-700 dark:text-blue-400 hover:bg-blue-500/20"
-              dateRange="Jan 2024 - Aug 2025"
-              positions={[
-                {
-                  title: "Cloud Setup & Support Engineer",
-                  dateRange: "Jan 2024 - May 2025",
-                  description: [
-                    "Provisioned and configured Linux VPS instances (Ubuntu/CentOS) for clients across various use cases",
-                    "Set up and managed web hosting environments including Apache, Nginx, and control panels (cPanel, DirectAdmin)",
-                    "Configured DNS records, SSL/TLS certificates, and domain routing for hosted services",
-                    "Diagnosed and resolved server-side issues including performance bottlenecks, network timeouts, and service failures",
-                    "Assisted clients with server hardening and basic firewall (UFW/iptables) configuration",
-                  ],
-                },
-                {
-                  title: "Automation Developer",
-                  dateRange: "June 2025 - Aug 2025",
-                  highlights: [
-                    "Built Python automation pipelines to handle provisioning workflows, reducing manual setup time by over 60%.",
-                    "Developed scripts for automated monitoring, alerting, and routine maintenance tasks across the server fleet.",
-                    "Integrated internal tooling with the hosting platform API to streamline order fulfillment and resource allocation.",
-                  ],
-                },
-              ]}
-              skills={["Linux", "Nginx", "Apache", "cPanel", "SSL/TLS", "DNS", "Python", "Automation", "Server Hardening"]}
-              link="https://cloudzone.vn/"
-            />
-          </BlurFade>
+          <BlurFade delay={BLUR_FADE_DELAY * 6} className="select-none"> 
+            {DATA.work.map((work) => {
+              const workHighlights = work.description
+                .split(/(?<=[.!?])\s+/)
+                .map((item) => item.trim())
+                .filter(Boolean);
 
-        </div>
-      </section>
-      <section id="certificates">
-        <div className="flex min-h-0 flex-col gap-y-3">
-          <BlurFade delay={BLUR_FADE_DELAY * 7}>
-            <h2 className="text-xl font-bold">Certificates</h2>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
-            <ResumeCard
-              href="https://www.hackerrank.com/certificates/85ce2f107570"
-              logoUrl="https://cdn.lduy.dev/certificates/logo/hackerrank.png"
-              altText="HackerRank"
-              title="Software Engineer"
-              subtitle="HackerRank"
-              period="1/7/2026"
-              target="_blank"
-            />
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
-            <ResumeCard
-              href="https://www.hackerrank.com/certificates/6dd19298a195"
-              logoUrl="https://cdn.lduy.dev/certificates/logo/hackerrank.png"
-              altText="HackerRank"
-              title="SQL (Intermediate)"
-              subtitle="HackerRank"
-              period="1/7/2026"
-              target="_blank"
-            />
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
-            <ResumeCard
-              href="https://www.hackerrank.com/certificates/4a9b3dc6febd"
-              logoUrl="https://cdn.lduy.dev/certificates/logo/hackerrank.png"
-              altText="HackerRank"
-              title="Frontend Developer"
-              subtitle="HackerRank"
-              period="1/7/2026"
-              target="_blank"
-            />
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.05}>
-            <ResumeCard
-              href="/assets/certificates/aws.pdf"
-              logoUrl="https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
-              altText="AWS Training & Certification"
-              title="AWS Security Fundamentals"
-              subtitle="AWS"
-              period="6/2/2026"
-              target="_blank"
-            />
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 8 * 0.1}>
-            <ResumeCard
-              href="/assets/certificates/microsoft-office-specialist-2016-master.pdf"
-              logoUrl="https://cdn.lduy.dev/certificates/logo/microsoft-logo.png"
-              altText="Microsoft Office Specialist 2016 Master"
-              title="Microsoft Office Specialist 2016 Master"
-              subtitle="Microsoft"
-              period="2020"
-              target="_blank"
-            />
+              return (
+                <WorkExperienceCard
+                  key={`${work.company}-${work.title}`}
+                  company={work.company}
+                  title={work.title}
+                  companyLogo={work.logoUrl}
+                  status={work.end === "Present" ? "Current" : "Previous"}
+                  statusColor={
+                    work.end === "Present"
+                      ? "bg-green-500/10 text-green-700 dark:text-green-400 hover:bg-green-500/20"
+                      : "bg-blue-500/10 text-blue-700 dark:text-blue-400 hover:bg-blue-500/20"
+                  }
+                  dateRange={`${work.start} - ${work.end}`}
+                  positions={[
+                    {
+                      title: work.title,
+                      dateRange: `${work.start} - ${work.end}`,
+                      highlights: workHighlights,
+                    },
+                  ]}
+                  skills={
+                    work.title.toLowerCase().includes("intern")
+                      ? ["PHP", "Laravel", "REST API", "MySQL", "S3 Storage", "Git", "Docker", "Postman"]
+                      : ["PHP", "Laravel", "REST API", "MVC", "MySQL", "Git", "CRUD", "Database Design"]
+                  }
+                  link={work.href}
+                />
+              );
+            })}
           </BlurFade>
         </div>
       </section>
+
       <section id="education">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 7}>
             <h2 className="text-xl font-bold">Education</h2>
           </BlurFade>
           {DATA.education.map((education, id) => (
-            <BlurFade
-              key={education.school}
-              delay={BLUR_FADE_DELAY * 8 + id * 0.05}
-            >
+            <BlurFade key={education.school} delay={BLUR_FADE_DELAY * 8 + id * 0.05}>
               <ResumeCard
                 href={education.href}
                 logoUrl={education.logoUrl}
@@ -291,79 +179,29 @@ export default function Page() {
           ))}
         </div>
       </section>
+
       <section id="skills">
         <div className="flex min-h-0 flex-col gap-y-3">
           <BlurFade delay={BLUR_FADE_DELAY * 9}>
             <h2 className="text-xl font-bold">Skills</h2>
-
-            <h3 className="text-lg font-bold mt-4 mb-2">Programming Languages</h3>
-            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
-              {[
-                { name: "JavaScript", icon: "js" },
-                { name: "TypeScript", icon: "ts" },
-                { name: "Java", icon: "java" },
-                { name: "Python", icon: "python" },
-                { name: "Node.js", icon: "nodejs" },
-                { name: "Go Lang", icon: "go" },
-                { name: "Lua", icon: "lua" },
-              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
-            </div>
-
-            <h3 className="text-lg font-bold mt-4 mb-2">Frontend</h3>
-            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
-              {[
-                { name: "HTML", icon: "html" },
-                { name: "CSS", icon: "css" },
-                { name: "Jquery", icon: "jquery" },
-                { name: "Bootstrap", icon: "bootstrap" },
-                { name: "React", icon: "react" },
-                { name: "Next.js", icon: "nextjs" },
-                { name: "Tailwind CSS", icon: "tailwindcss" },
-                { name: "SCSS", icon: "scss" },
-              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
-            </div>
-
-            <h3 className="text-lg font-bold mt-4 mb-2">
-              {" "}<Highlighter action="circle" color="#ff0000ff" iterations={2}>Backend</Highlighter>
-            </h3>
-            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
-              {[
-                { name: "Laravel", icon: "laravel" },
-                { name: "FastAPI", icon: "fastapi" },
-                { name: "Nest.js", icon: "nestjs" },
-                { name: "Express.js", icon: "express" },
-                { name: "Spring", icon: "spring" },
-                { name: "MongoDB", icon: "mongodb" },
-                { name: "MySQL", icon: "mysql" },
-              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
-            </div>
-
-            <h3 className="text-lg font-bold mt-4 mb-2">DevOps</h3>
-            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
-              {[
-                { name: "Docker", icon: "docker" },
-                { name: "Postman", icon: "postman" },
-                { name: "GIT", icon: "git" },
-                { name: "CloudFlare", icon: "cloudflare" },
-                { name: "Github Actions", icon: "githubactions" },
-                { name: "Linux", icon: "linux" },
-              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
-            </div>
-
-            <h3 className="text-lg font-bold mt-4 mb-2">Other</h3>
-            <div className="flex flex-row flex-wrap gap-2 max-w-[800px]">
-              {[
-                { name: "VS Code", icon: "vscode" },
-                { name: "Wordpress", icon: "wordpress" },
-                { name: "Github", icon: "github" },
-                { name: "Kali Linux", icon: "kali" },
-                { name: "Adobe Photoshop", icon: "photoshop" },
-                { name: "IntelliJ IDEA", icon: "idea" },
-              ].map((skill) => <SkillIcon key={skill.icon} {...skill} />)}
-            </div>
           </BlurFade>
 
           <BlurFade delay={BLUR_FADE_DELAY * 10}>
+            <div className="space-y-5">
+              {skillGroups.map((group) => (
+                <div key={group.title}>
+                  <h3 className="mb-2 mt-4 text-lg font-bold">{group.title}</h3>
+                  <div className="flex max-w-[800px] flex-wrap gap-2">
+                    {group.items.map((skill) => (
+                      <SkillIcon key={skill.icon} {...skill} />
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </BlurFade>
+
+          <BlurFade delay={BLUR_FADE_DELAY * 11}>
             <div className="flex flex-wrap gap-1">
               {DATA.skills.map((skill) => (
                 <Badge key={skill}>{skill}</Badge>
@@ -372,31 +210,29 @@ export default function Page() {
           </BlurFade>
         </div>
       </section>
+
       <section id="projects">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 11}>
+        <div className="w-full space-y-12 py-12">
+          <BlurFade delay={BLUR_FADE_DELAY * 12}>
             <div className="flex flex-col items-center justify-center space-y-4 text-center">
               <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  My Projects
+                <div className="inline-block rounded-lg bg-foreground px-3 py-1 text-sm text-background">
+                  Projects
                 </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center flex items-center justify-center">
-                  Check out my <SparklesText className="font-bold ml-2 text-3xl sm:text-5xl"> latest work</SparklesText>
+                <h2 className="text-center text-3xl font-bold tracking-tighter sm:text-5xl">
+                  Selected work
                 </h2>
                 <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  I&apos;ve worked on a variety of projects, from simple
-                  websites to complex web applications. Here are a few of my
-                  favorites.
+                  A few backend-driven projects focused on APIs, database design, and full
+                  web application development.
                 </p>
               </div>
             </div>
           </BlurFade>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-w-[800px] mx-auto">
+
+          <div className="mx-auto grid max-w-[800px] grid-cols-1 gap-3 sm:grid-cols-2">
             {DATA.projects.map((project, id) => (
-              <BlurFade
-                key={project.title}
-                delay={BLUR_FADE_DELAY * 12 + id * 0.05}
-              >
+              <BlurFade key={project.title} delay={BLUR_FADE_DELAY * 13 + id * 0.05}>
                 <ProjectCard
                   href={project.href}
                   title={project.title}
@@ -411,77 +247,39 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <section id="hackathons">
-        <div className="space-y-12 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 13}>
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
-                  Hackathons
-                </div>
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  I like <AuroraText>building things</AuroraText>
-                </h2>
-                <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  During my time in university, I attended{" "}<Highlighter action="box" color="#029effff">
-                  {DATA.hackathons.length}+ hackathons.</Highlighter> People from around the
-                  country would come together and build incredible things in 2-3
-                  days. It was eye-opening to see the endless possibilities
-                  brought to life by a group of motivated and passionate
-                  individuals.
-                </p>
-              </div>
-            </div>
-          </BlurFade>
-          <BlurFade delay={BLUR_FADE_DELAY * 14}>
-            <ul className="mb-4 ml-4 divide-y divide-dashed border-l">
-              {DATA.hackathons.map((project, id) => (
-                <BlurFade
-                  key={project.title + project.dates}
-                  delay={BLUR_FADE_DELAY * 15 + id * 0.05}
-                >
-                  <HackathonCard
-                    title={project.title}
-                    description={project.description}
-                    location={project.location}
-                    dates={project.dates}
-                    image={project.image}
-                    links={project.links}
-                  />
-                </BlurFade>
-              ))}
-            </ul>
-          </BlurFade>
-        </div>
-      </section>
+
       <section id="contact">
-        <div className="grid items-center justify-center gap-4 px-4 text-center md:px-6 w-full py-12">
-          <BlurFade delay={BLUR_FADE_DELAY * 16}>
+        <div className="grid w-full items-center justify-center gap-4 px-4 py-12 text-center md:px-6">
+          <BlurFade delay={BLUR_FADE_DELAY * 14}>
             <div className="space-y-3">
-              <div className="inline-block rounded-lg bg-foreground text-background px-3 py-1 text-sm">
+              <div className="inline-block rounded-lg bg-foreground px-3 py-1 text-sm text-background">
                 Contact
               </div>
               <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
                 Get in Touch
               </h2>
               <p className="mx-auto max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                Want to chat? Just shoot me an{" "}
-                <Link
-                  href={DATA.contact.social.email.url}
-                  className="text-blue-500 hover:underline"
-                >
+                Want to connect or discuss opportunities? Feel free to reach out via{" "}
+                <Link href={DATA.contact.social.email.url} className="text-blue-500 hover:underline">
                   email
                 </Link>{" "}
-                and I&apos;ll respond whenever I can. I will ignore all
-                soliciting.
+                or through my GitHub profile.
               </p>
 
-              <div className="mt-6 flex justify-center">
+              <div className="mt-6 flex justify-center gap-3">
                 <a
-                  href="/assets/certificates/Phan-Duy-Khai-CV.pdf"
-                  className="rounded-md border px-3 py-1 text-sm hover:bg-accent transition-colors"
+                  href={DATA.contact.social.GitHub.url}
+                  className="rounded-md border px-3 py-1 text-sm transition-colors hover:bg-accent"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  View Resume
+                  GitHub
+                </a>
+                <a
+                  href={DATA.contact.social.email.url}
+                  className="rounded-md border px-3 py-1 text-sm transition-colors hover:bg-accent"
+                >
+                  Email
                 </a>
               </div>
             </div>
